@@ -18,6 +18,7 @@ def genValue(infoarr, intarr=[5, 6]):
     return valarr
 
 def sourcecmp(source1, source2, compfn):
+    # key must match exactly, value matches according to compfn
     locationdict = {} # dictionary of key locations
     valuedict = {} # dictionary of value associations
     # loop through first source
@@ -48,4 +49,7 @@ def sourcecmp(source1, source2, compfn):
                 if compfn(valuedict[k][0][a], valuedict[k][1][b]):
                     print(f"Source 1 Row {locationdict[k][0][a]} and Source 2 Row {locationdict[k][1][b]} matches comparison function")
 
-sourcecmp(data1, data2, lambda a, b: a == b)
+def arraycmp(a, b):
+    return a[0] == b[0] or a[1] == b[1]
+
+sourcecmp(data1, data2, arraycmp)
